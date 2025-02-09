@@ -1,0 +1,20 @@
+{
+  "name": "noc-app-nodejs",
+  "version": "1.0.0",
+  "description": "App NOC development in Nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dennysferrer/NOC-APP-NODEJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dennysferrer/NOC-APP-NODEJS/issues"
+  },
+  "homepage": "https://github.com/dennysferrer/NOC-APP-NODEJS#readme"
+}
