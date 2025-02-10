@@ -1,4 +1,5 @@
 import { CronService } from '../presentation/cron/cron.services'
+import { CheckService } from '../domain/use-cases/checks/check-service'
 
 export class Server {
     static start(){
@@ -6,8 +7,8 @@ export class Server {
         CronService.createJob(
             '*/2 * * * * *',
             () => {
-                const date = new Date();
-                console.log(`Two seconds ${date}`)
+                new CheckService().execute('https://www.google.com')
+
             })
     }
 }
