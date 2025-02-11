@@ -7,7 +7,11 @@ export class Server {
         CronService.createJob(
             '*/2 * * * * *',
             () => {
-                new CheckService().execute('https://www.google.com')
+                const url = 'http://localhost:3000/comments';
+                new CheckService(
+                    () => console.log(`${url} is ok`),
+                    (error) => console.log(`fetching in ${url} failed`)
+                ).execute(url);
 
             })
     }
