@@ -1,9 +1,11 @@
+import { LogEntity } from "../../entities/log.entity";
+
 interface CheckServiceUseCase {
     execute(url: string): Promise<boolean>
 }
 
-type SuccessCallback = () => void
-type ErrorCallback = (error: string) => void
+type SuccessCallback = (() => void) | undefined
+type ErrorCallback = ((error: string) => void) | undefined
 
 export class CheckService implements CheckServiceUseCase {
 
@@ -16,12 +18,20 @@ export class CheckService implements CheckServiceUseCase {
         try {
             const req = await fetch(url);
             if (!req.ok){
-                throw new Error(`Error on fetch request: ${url}`);
+                //throw new Error(`Error on fetch request: ${url}`);
+                if (this.errorCallback){
+                    this.errorCallback(`Error on fetch request: ${url}`)
+                }
             }
-            this.successCallback()
+            if (this.successCallback){
+                this.successCallback()
+            }
+            
             return true;
         } catch (error){
-            this.errorCallback(`${error}`)
+            if (this.errorCallback){
+                this.errorCallback(`${error}`)
+            }
             return false;
         }
     }
